@@ -17,3 +17,7 @@ output "third_value_in_list" {
 output "value_in_map" {
   value = var.v3["abc"]
 }
+
+output "value_in_map1" {
+  value = lookup(var.v3, "abc1", "none")
+}
