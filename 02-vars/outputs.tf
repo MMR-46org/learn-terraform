@@ -15,5 +15,5 @@ output "third_value_in_list" {
 }
 
 output "value_in_map" {
-  value = var.v3[abc]
+  value = var.v3["abc"]
 }
