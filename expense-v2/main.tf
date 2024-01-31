@@ -1,0 +1,58 @@
+resource "aws_instance" "frontend" {
+  ami                    = data.aws_ami.centos8.image_id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = var.vpc_security_group_id
+
+  tags = {
+    Name = "frontend-dev"
+  }
+}
+
+resource "aws_route53_record" "frontend" {
+  zone_id = var.zone-id
+  name    = "frontend-dev"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.frontend.private_ip]
+}
+
+
+
+resource "aws_instance" "backend" {
+  ami                    = data.aws_ami.centos8.image_id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = var.vpc_security_group_id
+
+  tags = {
+    Name = "backend-dev"
+  }
+}
+
+resource "aws_route53_record" "backend" {
+  zone_id = var.zone-id
+  name    = "backend-dev"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.backend.private_ip]
+
+}
+
+
+resource "aws_instance" "mysql" {
+  ami                    = data.aws_ami.centos8.image_id
+  instance_type          = var.instance_type
+  vpc_security_group_ids = var.vpc_security_group_id
+
+  tags = {
+    Name = "mysql-dev"
+  }
+}
+
+
+  resource "aws_route53_record" "mysql" {
+    zone_id = var.zone-id
+    name    = "mysql-dev"
+    type    = "A"
+    ttl     = 30
+    records = [aws_instance.mysql.private_ip]
+  }
