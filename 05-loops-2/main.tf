@@ -24,7 +24,7 @@ variable  "fruits2" {
 
 
 resource "null_resource" "test" {
-  for_each = var.fruits2
+  for_each = var.fruits1
   provisioner "local-exec" {
     command = "echo ${each.key} = ${each.value}"
   }
