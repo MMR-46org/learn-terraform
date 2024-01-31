@@ -7,20 +7,20 @@ variable  "fruits1" {
 
 
 
-variable  "fruits2" {
-  default    =   {
-    apple = {
-      name   = "apple"
-      quantity = 10
-    }
-  banana =  {
-    name   = "banana"
-    quantity  = 20
-  }
-
-  }
-
-}
+#variable  "fruits2" {
+#  default    =   {
+#    apple = {
+#      name   = "apple"
+#      quantity = 10
+#    }
+#  banana =  {
+#    name   = "banana"
+#    quantity  = 20
+#  }
+#
+#  }
+#
+#}
 
 
 resource "null_resource" "test" {
@@ -31,9 +31,9 @@ resource "null_resource" "test" {
 }
 
 
-resource "null_resource" "test1" {
-  for_each = var.fruits2
-  provisioner "local-exec" {
-    command = "echo ${lookup(each.key, "name" , "null")} = ${lookup(each.key, "name" , "null")}"
-  }
-}
+#resource "null_resource" "test1" {
+#  for_each = var.fruits2
+#  provisioner "local-exec" {
+#    command = "echo ${lookup(each.value, "name" , "null")} = ${lookup(each.value, "name" , "null")}"
+#  }
+#}
