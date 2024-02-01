@@ -34,6 +34,6 @@ variable  "fruits2" {
 resource "null_resource" "test1" {
   for_each = var.fruits2
   provisioner "local-exec" {
-    command = "echo ${lookup(fruits2, "fruits2.name" , "null")} = ${lookup(each.value, "fruits2.quantity" , "null")}"
+    command = "echo ${lookup(each.value, "name" , "null")} = ${lookup(each.value "quantity" , "null")}"
   }
 }
